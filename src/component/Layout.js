@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   const history = useHistory();
 
   function signout() {
-    useHistory.push("/");
+    history.push("/");
   }
 
   return (

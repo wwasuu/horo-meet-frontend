@@ -26,6 +26,7 @@ const Partner = () => {
         month: moment(selectedDate).format("MM"),
         day: moment(selectedDate).format("DD")
       }
+      console.log(API_URL)
       const { data: { data }} = await axios.post(`${API_URL}/calculate/date`, date)
       console.log(user)
       setText("ไม่ควรทำธุรกิจร่วมกัน")

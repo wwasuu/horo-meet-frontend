@@ -12,10 +12,10 @@ const user_clear = () => ({
 const initialUserState = {
   element: ["E2", "E1", "E7"],
   occupation: "",
-  sleep_bed: "",
-  work_desk: "",
-  color: "",
-  activity: "",
+  sleep_bed: "ทิศตะวันออก",
+  work_desk: "ทิศตะวันออก",
+  color: "สีเขียว",
+  activity: "ปลูกต้นไม้ ท่องเที่ยวธรรมชาติ ตีกอล์ฟ",
 };
 
 const user = (state = initialUserState, action) => {

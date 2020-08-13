@@ -7,19 +7,6 @@ const Prediction = () => {
   return (
     <Layout>
       <div className="layout">
-        <Particles
-          className="interactive-background"
-          params={{
-            particles: {
-              number: {
-                value: 50,
-                density: {
-                  enable: false,
-                },
-              },
-            },
-          }}
-        />
         <div className="content__container">
           <h1 className="title">ผลทำนาย</h1>
         </div>
