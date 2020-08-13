@@ -51,6 +51,7 @@ const Main = () => {
             }}
           />
           <div className="content__container">
+            <img className="logo" src="/logo.png" alt="logo" />
             <div className="title">คุณเกิดวันที่</div>
             <div className="form">
               <div>
