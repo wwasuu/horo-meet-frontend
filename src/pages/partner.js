@@ -1,5 +1,5 @@
 import DateFnsUtils from "@date-io/date-fns";
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import axios from "axios";
 import moment from "moment";
 import React, { useState } from "react";
@@ -65,11 +65,12 @@ const Partner = () => {
             <div className="form form--parter">
             <div>
                 <div>ปี/เดือน/วัน</div>
-                <KeyboardDatePicker
+                <DatePicker
                   id="date-picker-dialog"
                   format="dd-MM-yyyy"
                   value={selectedDate}
                   onChange={handleDateChange}
+                  views={["year", "month", "date"]}
                   KeyboardButtonProps={{
                     "aria-label": "change date",
                   }}

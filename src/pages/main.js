@@ -2,8 +2,8 @@ import React from "react";
 import Particles from "react-particles-js";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
+  TimePicker,
+  DatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { useHistory } from "react-router-dom";
@@ -55,19 +55,15 @@ const Main = () => {
             <div className="form">
               <div>
                 <div>ปี/เดือน/วัน</div>
-                <KeyboardDatePicker
-                  id="date-picker-dialog"
+                <DatePicker
                   format="dd-MM-yyyy"
                   value={selectedDate}
                   onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    "aria-label": "change date",
-                  }}
                 />
               </div>
               <div>
                 <div>เวลา</div>
-                <KeyboardTimePicker
+                <TimePicker
                   id="time-picker"
                   value={selectedTime}
                   onChange={handleTimeChange}
