@@ -26,13 +26,11 @@ const Partner = () => {
         month: moment(selectedDate).format("MM"),
         day: moment(selectedDate).format("DD")
       }
-      console.log(API_URL)
       const { data: { data }} = await axios.post(`${API_URL}/calculate/date`, date)
       console.log(user)
-      setText("ไม่ควรทำธุรกิจร่วมกัน")
-      // Perfect Match
-      // Good Match
-      // ไม่ควรทำธุรกิจร่วมกัน
+      const i = (Math.floor(Math.random() * 3) + 1) - 1
+      const o = ["ไม่ควรทำธุรกิจร่วมกัน", "Perfect Match", "Good Match"]
+      setText(o[i])
       setElement(data.DP.element_code)
     } catch (error) {
       console.log("Partner Page | Error while call calculate()", error)
