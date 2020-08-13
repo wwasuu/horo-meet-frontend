@@ -1,0 +1,197 @@
+@import "./font-awesome/light.scss";
+@import "./font-awesome/solid.scss";
+@import "./font-awesome/regular.scss";
+@import "./font-awesome/duotone.scss";
+@import "./font-awesome/brands.scss";
+@import "./font-awesome/fontawesome.scss";
+@import "./override.scss";
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap");
+
+@import '/node_modules/@fullcalendar/core/main.css';
+@import '/node_modules/@fullcalendar/daygrid/main.css';
+
+// @import '~@fullcalendar/core/main.css';
+// @import '~@fullcalendar/daygrid/main.css';
+
+body {
+  margin: 0;
+  color: #fff;
+  font-family: "Prompt", sans-serif;
+}
+
+input {
+  font-family: "Prompt", sans-serif;
+}
+
+a {
+  color: #fff;
+}
+
+.layout {
+  min-height: 100vh;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.8);
+  @media only screen and (max-width: 768px) and (min-width: 320px) {
+    padding-top: 64px;
+  }
+}
+
+.title {
+  justify-self: flex-start;
+  font-size: 2rem;
+  @media only screen and (max-width: 768px) and (min-width: 320px) {
+    font-size: 1.75rem;
+  }
+}
+
+.content {
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 64px;
+    justify-items: center;
+    &--calender {
+      position: relative;
+      top: unset;
+      left: unset;
+      transform: none;
+      padding: 96px 64px 24px 64px;
+      @media only screen and (max-width: 768px) and (min-width: 320px) {
+        padding: 0 16px;
+      }
+    }
+    @media only screen and (max-width: 768px) and (min-width: 320px) {
+      row-gap: 32px;
+      position: relative;
+      top: unset;
+      left: unset;
+      transform: none;
+      padding: 0 16px;
+    }
+    
+  }
+}
+
+.form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 32px;
+  @media only screen and (max-width: 768px) and (min-width: 320px) {
+    grid-template-columns: 1fr;
+  }
+  &--parter {
+    grid-template-columns: auto 1fr;
+    @media only screen and (max-width: 768px) and (min-width: 320px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  &__label {
+  }
+  &__input {
+    color: #fff;
+    font-size: 3.5rem;
+    background-color: transparent;
+    border-width: 0;
+    border-bottom: 1px solid #fff;
+    &:focus {
+      outline: none;
+    }
+    &--date {
+      width: 282px
+    }
+    &--time {
+      width: 172px
+    }
+  }
+}
+
+.button {
+  font-family: "Prompt", sans-serif;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  border-radius: 100px;
+  font-size: 1rem;
+  min-width: 196px;
+  padding: 8px 0;
+  &:hover {
+    color: rgba(0, 0, 0, 0.9);
+    background-color: #fff;
+  }
+  &.button-large {
+    font-size: 1.25rem;
+  }
+  &.button-block {
+    width: 100%;
+  }
+}
+
+.calendar {
+  &__control {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    &-item {
+        font-size: 1.25rem;
+        cursor: pointer;
+    }
+  }
+  
+  &__header {
+    display: grid;
+    grid-template-columns: repeat(7, 128px);
+  }
+  &__item {
+    text-align: center;
+    border: 1px solid #fff;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255,255,255, 0.2);
+  }
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  z-index: 99;
+  background-color: #0f4c81;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 6px 2px;
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    border: 1px solid #0c3d67;
+    border-top: 0;
+    &:first-child {
+      border-left-width: 0;
+    }
+    &:last-child {
+      border-right-width: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) and (min-width: 320px) {
+  .interactive-background {
+    display: none;
+  }
+}
+
+.fc-star {
+  position: absolute;
+  top: -24px;
+  left: 6px;
+  color: yellow;
+  @media only screen and (max-width: 768px) and (min-width: 320px) {
+    top: 0px;
+  }
+}
