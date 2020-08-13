@@ -17,24 +17,28 @@
 }
 
 .fc-media-screen {
-    width: 100%;
+  width: 100%;
 }
 
 .fc-col-header-cell {
-    background-color: #0f4c81;
+  background-color: #0f4c81;
 }
 .fc-h-event {
   border-width: 0 !important;
 }
 
 .MuiPickersToolbar-toolbar {
-    background-color: #0f4c81 !important;
+  background-color: #0f4c81 !important;
 }
 
 .MuiButton-textPrimary {
-    color: #0f4c81 !important;
+  color: #0f4c81 !important;
 }
 
 .MuiPickersDay-daySelected {
-    background-color: #0f4c81 !important;
+  background-color: #0f4c81 !important;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: #0f4c81 !important;
 }

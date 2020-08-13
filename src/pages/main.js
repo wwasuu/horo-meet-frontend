@@ -55,7 +55,7 @@ const Main = () => {
             <div className="title">คุณเกิดวันที่</div>
             <div className="form">
               <div>
-                <div>ปี/เดือน/วัน</div>
+                <div>วัน-เดือน-ปี</div>
                 <DatePicker
                   format="dd-MM-yyyy"
                   value={selectedDate}
