@@ -17,6 +17,7 @@ body {
   margin: 0;
   color: #fff;
   font-family: "Prompt", sans-serif;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 input {
@@ -30,7 +31,6 @@ a {
 .layout {
   min-height: 100vh;
   position: relative;
-  background-color: rgba(0, 0, 0, 0.8);
   @media only screen and (max-width: 768px) and (min-width: 320px) {
     padding-top: 64px;
   }
@@ -90,7 +90,9 @@ a {
       justify-items: left;
       row-gap: 32px;
       width: 50%;
+      margin: 64px;
       @media only screen and (max-width: 768px) and (min-width: 320px) {
+        margin: unset;
         width: unset;
       }
     }
