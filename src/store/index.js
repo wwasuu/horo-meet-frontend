@@ -10,7 +10,7 @@ const user_clear = () => ({
 });
 
 const initialUserState = {
-  element: null,
+  element: ["E2", "E1", "E7"],
   occupation: "",
   sleep_bed: "",
   work_desk: "",

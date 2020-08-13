@@ -1,10 +1,37 @@
-import React from "react"
+import React, { useState, useEffect } from "react";
 import Layout from "../component/Layout";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { API_URL } from "../config";
 import "../styles/app.scss";
 
 const Calendar = () => {
+  const [calendarEvent, setCalendarEvent] = useState([]);
+  const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    getCalendar();
+  }, []);
+
+  async function getCalendar() {
+    try {
+      const {
+        data: { data: { calendar } },
+      } = await axios.get(`${API_URL}/calculate/calendar`);
+      const tmpData = [];
+      for (const x of calendar) {
+        if (user.element.includes(x.element_code)) {
+          tmpData.push({ title: x.element_code, date: x.date });
+        }
+      }
+      setCalendarEvent(tmpData)
+    } catch (error) {
+      console.log("Calendar Page | Error while call getCalendar()", error);
+    }
+  }
+
   function renderEventContent(eventInfo) {
     return (
       <div>
@@ -21,10 +48,7 @@ const Calendar = () => {
             plugins={[dayGridPlugin]}
             initialView="dayGridMonth"
             themeSystem="Darkly"
-            events={[
-              { title: "event 1", date: "2020-08-15" },
-              { title: "event 2", date: "2020-08-16" },
-            ]}
+            events={calendarEvent}
             eventContent={renderEventContent}
           />
         </div>
