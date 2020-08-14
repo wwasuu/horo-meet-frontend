@@ -7,8 +7,8 @@
 @import "./override.scss";
 @import url("https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap");
 
-@import '/node_modules/@fullcalendar/core/main.css';
-@import '/node_modules/@fullcalendar/daygrid/main.css';
+@import "/node_modules/@fullcalendar/core/main.css";
+@import "/node_modules/@fullcalendar/daygrid/main.css";
 
 // @import '~@fullcalendar/core/main.css';
 // @import '~@fullcalendar/daygrid/main.css';
@@ -32,7 +32,21 @@ a {
   min-height: 100vh;
   position: relative;
   @media only screen and (max-width: 768px) and (min-width: 320px) {
-    padding-top: 64px;
+    min-height: unset;
+    padding: 64px 0;
+  }
+  &__home-button {
+    z-index: 5;
+    cursor: pointer;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+    > img {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
@@ -60,7 +74,6 @@ a {
   &--center {
     justify-self: center;
   }
-
 }
 
 .content {
@@ -104,7 +117,6 @@ a {
       transform: none;
       padding: 0 16px;
     }
-    
   }
 }
 
@@ -134,10 +146,10 @@ a {
       outline: none;
     }
     &--date {
-      width: 282px
+      width: 282px;
     }
     &--time {
-      width: 172px
+      width: 172px;
     }
   }
 }
@@ -169,11 +181,11 @@ a {
     justify-content: space-between;
     margin-bottom: 16px;
     &-item {
-        font-size: 1.25rem;
-        cursor: pointer;
+      font-size: 1.25rem;
+      cursor: pointer;
     }
   }
-  
+
   &__header {
     display: grid;
     grid-template-columns: repeat(7, 128px);
@@ -185,7 +197,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255,255,255, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
   }
 }
 
@@ -233,7 +245,7 @@ a {
 }
 
 .meta {
-  color: rgba(255,255,255, 0.8);
-  font-size: .9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
   margin-bottom: 8px;
 }

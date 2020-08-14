@@ -14,6 +14,11 @@ const Layout = ({ children }) => {
 
   return (
     <div>
+      <Link to="/">
+        <div className="layout__home-button">
+          <img src="/logo-circle.png" alt="logo" />
+        </div>
+      </Link>
       <div className="navbar">
         <div
           className={cn("navbar__item", {
@@ -26,7 +31,7 @@ const Layout = ({ children }) => {
                 fas: location.pathname === "/prediction",
               })}
             />
-          </Link>          
+          </Link>
         </div>
         <div
           className={cn("navbar__item", {
@@ -53,7 +58,6 @@ const Layout = ({ children }) => {
               })}
             />
           </Link>
-     
         </div>
         <div className="navbar__item" onClick={signout}>
           <i className="fal fa-sign-out fa-lg" />
