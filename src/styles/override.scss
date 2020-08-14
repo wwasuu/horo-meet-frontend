@@ -42,3 +42,19 @@
 .fc .fc-daygrid-day.fc-day-today {
   background-color: #0f4c81 !important;
 }
+
+
+.fc-today-button {
+  text-transform: capitalize;
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media only screen and (max-width: 768px) and (min-width: 320px) {
+  .fc .fc-view-harness {
+    height: 420px !important;
+  }
+}
