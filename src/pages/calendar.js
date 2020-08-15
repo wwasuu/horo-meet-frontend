@@ -22,7 +22,7 @@ const Calendar = () => {
       } = await axios.get(`${API_URL}/calculate/calendar`);
       const tmpData = [];
       for (const x of calendar) {
-        if (user.element.includes(x.element_code)) {
+        if (user.good_element[0].includes(x.element_code)) {
           tmpData.push({ title: x.element_code, date: x.date });
         }
       }

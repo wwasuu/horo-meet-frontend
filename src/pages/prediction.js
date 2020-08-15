@@ -10,7 +10,7 @@ const Prediction = () => {
       <div className="layout">
         <div className="content__container content__container--prediction">
           <h1 className="title">ผลทำนาย</h1>
-          <div className="subtitle subtitle--center">ธาตุไม้</div>
+          <div className="subtitle subtitle--center">{user.element_name}</div>
           <div className="">
             <div className="meta">
               <i className="fal fa-briefcase" /> อาชีพ
@@ -29,7 +29,7 @@ const Prediction = () => {
             </div>
             <div>{user.work_desk}</div>
           </div>
-          <div >
+          <div>
             <div className="meta">
               <i className="fal fa-palette" /> สีนำโชค
             </div>

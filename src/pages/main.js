@@ -5,21 +5,25 @@ import {
   TimePicker,
   DatePicker,
 } from "@material-ui/pickers";
+import moment from "moment";
 import DateFnsUtils from "@date-io/date-fns";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { API_URL } from "../config";
 import "../styles/app.scss";
+import { user_set } from "../store";
 
 const Main = () => {
-  const now = new Date()
-  const history = useHistory()
-  const [selectedDate, setSelectedDate] = React.useState(now
-  );
-  const [selectedTime, setSelectedTime] = React.useState(
-    now
-  );
+  const now = new Date();
+  const history = useHistory();
+  const [selectedDate, setSelectedDate] = React.useState(now);
+  const [selectedTime, setSelectedTime] = React.useState(now);
+  const [isLoading, setLoading] = React.useState(false);
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+  const dispatch = useDispatch();
 
   const handleTimeChange = (date) => {
     setSelectedTime(date);
@@ -27,11 +31,40 @@ const Main = () => {
 
   const predict = async () => {
     try {
+      setLoading(true);
+      const date = {
+        year: moment(selectedDate).format("YYYY"),
+        month: moment(selectedDate).format("MM"),
+        day: moment(selectedDate).format("DD"),
+        time: moment(selectedTime).format("HH:ss"),
+      };
+      // const date = {
+      //   year: "1942",
+      //   month: "07",
+      //   day: "18",
+      //   time: "02:42",
+      // };
+      const {
+        data: { data },
+      } = await axios.post(`${API_URL}/calculate`, date);
+      dispatch(
+        user_set({
+          good_element: data.result.goodElement,
+          bad_element: data.result.badElement,
+          element_name: data.advice.element_name, 
+          occupation: data.advice.occupation,
+          sleep_bed: data.advice.sleep_bed,
+          work_desk: data.advice.work_desk,
+          color: data.advice.color,
+          activity: data.advice.activity,
+        })
+      );
       history.push("/prediction")
     } catch (error) {
-      console.log("Main page | while call predict()", error)
+      console.log("Main page | while call predict()", error);
     }
-  }
+    setLoading(false);
+  };
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -75,7 +108,11 @@ const Main = () => {
                 />
               </div>
             </div>
-            <button className="button button-large" onClick={predict}>
+            <button
+              className="button button-large"
+              onClick={predict}
+              disabled={isLoading}
+            >
               ทำนาย
             </button>
           </div>

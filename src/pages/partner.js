@@ -16,11 +16,13 @@ const Partner = () => {
   const [element, setElement] = useState(null);
   const [text, setText] = useState("");
   const user = useSelector((state) => state.user);
+  const [isLoading, setLoading] = React.useState(false)
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
   async function calculate() {
     try {
+      setLoading(true)
       const date = {
         year: moment(selectedDate).format("YYYY"),
         month: moment(selectedDate).format("MM"),
@@ -29,14 +31,19 @@ const Partner = () => {
       const {
         data: { data },
       } = await axios.post(`${API_URL}/calculate/date`, date);
-      console.log(user);
-      const i = Math.floor(Math.random() * 3) + 1 - 1;
-      const o = ["ไม่ควรทำธุรกิจร่วมกัน", "Perfect Match", "Good Match"];
-      setText(o[i]);
+      if ((user.good_element[0].includes(data.MS.code) || user.good_element[1].includes(data.MS.code)) && (user.good_element[0].includes(data.MS.zodiac_code) || user.good_element[1].includes(data.MS.zodiac_code))) {
+        setText("Perfect Match");
+      }
+      else if (!(user.good_element[0].includes(data.MS.code) || !user.good_element[1].includes(data.MS.code)) && (user.good_element[0].includes(data.MS.zodiac_code) || user.good_element[1].includes(data.MS.zodiac_code))) {
+        setText("Good Match");
+      } else {
+        setText("ไม่ควรทำธุรกิจร่วมกัน");
+      }
       setElement(data.DP.element_code);
     } catch (error) {
       console.log("Partner Page | Error while call calculate()", error);
     }
+    setLoading(false)
   }
 
   function reset() {
@@ -88,7 +95,7 @@ const Partner = () => {
               <div className="title title--center">
                 <Typist ms={1000}>{text}</Typist>
               </div>
-              <button className="button button-large" onClick={reset}>
+              <button className="button button-large" onClick={reset} disabled={isLoading}>
                 ทำนายอีกครั้ง
               </button>
             </div>
