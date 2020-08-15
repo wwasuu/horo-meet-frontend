@@ -1,1 +1,1 @@
-export const API_URL = "https://188.166.220.234:8080/api"
+export const API_URL = "https://horomeet-api.et.r.appspot.com/api"
