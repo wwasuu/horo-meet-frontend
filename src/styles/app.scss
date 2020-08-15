@@ -155,6 +155,7 @@ a {
 }
 
 .button {
+  cursor: pointer;
   font-family: "Prompt", sans-serif;
   background-color: transparent;
   border: 1px solid #fff;
@@ -172,6 +173,9 @@ a {
   }
   &.button-block {
     width: 100%;
+  }
+  &:disabled {
+    opacity: 0.6;
   }
 }
 

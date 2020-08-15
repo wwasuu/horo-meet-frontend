@@ -10,8 +10,6 @@ const Layout = ({ children }) => {
     history.push("/");
   }
 
-  console.log(location);
-
   return (
     <div>
       <Link to="/">

@@ -22,10 +22,13 @@ const Calendar = () => {
       } = await axios.get(`${API_URL}/calculate/calendar`);
       const tmpData = [];
       for (const x of calendar) {
-        if (user.good_element[0].includes(x.element_code)) {
-          tmpData.push({ title: x.element_code, date: x.date });
+        for (const y of user.good_element) {          
+          if (y.includes(x.element_code)) {
+            tmpData.push({ title: x.element_code, date: x.date });
+          }
         }
       }
+      console.log("event", tmpData)
       setCalendarEvent(tmpData)
     } catch (error) {
       console.log("Calendar Page | Error while call getCalendar()", error);

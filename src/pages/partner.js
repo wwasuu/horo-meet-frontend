@@ -10,31 +10,58 @@ import Layout from "../component/Layout";
 import { API_URL } from "../config";
 import "../styles/app.scss";
 
+const zodiacToElement = {
+  Z1: "E0",
+  Z2: "E6",
+  Z3: "E1",
+  Z4: "E2",
+  Z5: "E5",
+  Z6: "E3",
+  Z7: "E4",
+  Z8: "E6",
+  Z9: "E7",
+  Z10: "E8",
+  Z11: "E5",
+  Z12: "E9",
+};
+
 const Partner = () => {
   const now = new Date();
   const [selectedDate, setSelectedDate] = useState(now);
   const [element, setElement] = useState(null);
   const [text, setText] = useState("");
   const user = useSelector((state) => state.user);
-  const [isLoading, setLoading] = React.useState(false)
+  const [isLoading, setLoading] = React.useState(false);
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
   async function calculate() {
     try {
-      setLoading(true)
+      setLoading(true);
       const date = {
         year: moment(selectedDate).format("YYYY"),
         month: moment(selectedDate).format("MM"),
         day: moment(selectedDate).format("DD"),
       };
+      
       const {
         data: { data },
-      } = await axios.post(`${API_URL}/calculate/date`, date);
-      if ((user.good_element[0].includes(data.MS.code) || user.good_element[1].includes(data.MS.code)) && (user.good_element[0].includes(data.MS.zodiac_code) || user.good_element[1].includes(data.MS.zodiac_code))) {
+      } = await axios.post(`${API_URL}/calculate/date`, date)
+      if (
+        (user.good_element[0].includes(data.MS.code) ||
+          user.good_element[1].includes(data.MS.code)) &&
+        (user.good_element[0].includes(zodiacToElement[data.MS.zodiac_code]) ||
+          user.good_element[1].includes(zodiacToElement[data.MS.zodiac_code]))
+      ) {
         setText("Perfect Match");
-      }
-      else if (!(user.good_element[0].includes(data.MS.code) || !user.good_element[1].includes(data.MS.code)) && (user.good_element[0].includes(data.MS.zodiac_code) || user.good_element[1].includes(data.MS.zodiac_code))) {
+      } else if (
+        (
+          !user.good_element[0].includes(data.MS.code) &&
+          !user.good_element[1].includes(data.MS.code)
+        ) &&
+        (user.good_element[0].includes(zodiacToElement[data.MS.zodiac_code]) ||
+          user.good_element[1].includes(zodiacToElement[data.MS.zodiac_code]))
+      ) {
         setText("Good Match");
       } else {
         setText("ไม่ควรทำธุรกิจร่วมกัน");
@@ -43,7 +70,7 @@ const Partner = () => {
     } catch (error) {
       console.log("Partner Page | Error while call calculate()", error);
     }
-    setLoading(false)
+    setLoading(false);
   }
 
   function reset() {
@@ -92,10 +119,12 @@ const Partner = () => {
           ) : (
             <div className="content__container">
               <h1 className="title">ดวงคู่ธุรกิจของคุณ</h1>
-              <div className="title title--center">
-                <Typist ms={1000}>{text}</Typist>
-              </div>
-              <button className="button button-large" onClick={reset} disabled={isLoading}>
+              <div className="title title--center">{text}</div>
+              <button
+                className="button button-large"
+                onClick={reset}
+                disabled={isLoading}
+              >
                 ทำนายอีกครั้ง
               </button>
             </div>

@@ -38,12 +38,7 @@ const Main = () => {
         day: moment(selectedDate).format("DD"),
         time: moment(selectedTime).format("HH:ss"),
       };
-      // const date = {
-      //   year: "1942",
-      //   month: "07",
-      //   day: "18",
-      //   time: "02:42",
-      // };
+
       const {
         data: { data },
       } = await axios.post(`${API_URL}/calculate`, date);
@@ -59,7 +54,9 @@ const Main = () => {
           activity: data.advice.activity,
         })
       );
-      history.push("/prediction")
+      setTimeout(() => {
+        history.push("/prediction")
+      }, 1000)
     } catch (error) {
       console.log("Main page | while call predict()", error);
     }
